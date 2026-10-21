@@ -92,7 +92,22 @@ public class Substituto extends Professor {
 	 */
 	public int incluirDisciplinas(List<EDisciplina> turmas) {
 		//TODO
-		return  0;
+		int cargaHora = 0;
+		for (EDisciplina horDisciplina : disciplinas) {
+			cargaHora += horDisciplina.horasAula();
+			
+		}
+		for (EDisciplina disciplinasAdicionadas : turmas) {
+			if(!disciplinas.contains(disciplinasAdicionadas) &&( cargaHora + disciplinasAdicionadas.horasAula())<MAX_AULAS){
+				disciplinas.add(disciplinasAdicionadas);
+			}
+		}
+		if(cargaHora<MIN_AULAS){
+			disciplinas.clear();
+		}
+		
+		
+		return  disciplinas.size();
 	}
 
 	/**
